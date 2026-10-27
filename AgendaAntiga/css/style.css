@@ -1,0 +1,812 @@
+/* =========================================================
+   AGENDA 2026 — BLOCO 2 (A4)
+   CSS limpo e reorganizado (baseado no HTML enviado)
+========================================================= */
+
+/* ===================== TOKENS / VARIÁVEIS ===================== */
+:root {
+  /* Paleta */
+  --blue: #2f486d;
+  --navy: #223148;
+  --paper: #f3eae0;
+  --sand: #d2c7b8;
+
+  --ink: #0f172a;
+  --muted: rgba(34, 49, 72, 0.74);
+  --line: rgba(34, 49, 72, 0.16);
+
+  --titleFont:
+    "Neue Montreal", "Montserrat", system-ui, -apple-system, Segoe UI, Roboto,
+    Arial, sans-serif;
+  --textFont:
+    "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  --radius: 18px;
+  --shadow: 0 18px 55px rgba(34, 49, 72, 0.12);
+
+  /* A4 em CSS pixels (padrão impressão) */
+  --a4w: 210mm;
+  --a4h: 297mm;
+
+  /* Margens internas da “folha” */
+  --padX: 16mm;
+  --padY: 14mm;
+}
+
+/* ===================== RESET / BASE ===================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--textFont);
+  color: var(--ink);
+  background:
+    radial-gradient(
+      900px 480px at 20% 10%,
+      rgba(47, 72, 109, 0.14),
+      transparent 55%
+    ),
+    radial-gradient(
+      900px 520px at 90% 30%,
+      rgba(210, 199, 184, 0.26),
+      transparent 58%
+    ),
+    var(--paper);
+  padding: 22px 14px 40px;
+}
+
+h1 {
+  margin: 6px 0 0;
+  font-family: var(--titleFont);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  font-size: 30px;
+  line-height: 1.08;
+}
+
+/* ===================== LAYOUT (WEB) ===================== */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+/* ===================== FOLHA (A4) ===================== */
+.sheet {
+  width: var(--a4w);
+  min-height: var(--a4h);
+  background: rgba(243, 234, 224, 0.86);
+  border: 1px solid rgba(34, 49, 72, 0.12);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+
+  /* padding base */
+  padding: var(--padY) var(--padX);
+
+  /* FIX GLOBAL: reserva espaço para o rodapé não sobrepor conteúdo */
+  padding-bottom: calc(var(--padY) + 22mm);
+}
+
+/* Texturas leves da folha */
+.sheet::before {
+  content: "";
+  position: absolute;
+  inset: -120px -160px auto auto;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(47, 72, 109, 0.2),
+    transparent 58%
+  );
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+.sheet::after {
+  content: "";
+  position: absolute;
+  inset: auto auto -170px -190px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 60% 45%,
+    rgba(210, 199, 184, 0.3),
+    transparent 62%
+  );
+  pointer-events: none;
+}
+
+/* ===================== TOPO (HEADER) ===================== */
+.top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 10mm;
+  border-bottom: 1px solid rgba(34, 49, 72, 0.14);
+  margin-bottom: 10mm;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(34, 49, 72, 0.7);
+  font-weight: 700;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--blue);
+  box-shadow: 0 0 0 6px rgba(47, 72, 109, 0.12);
+}
+
+.sub {
+  margin: 6px 0 0;
+  max-width: 70ch;
+  color: rgba(34, 49, 72, 0.78);
+  font-weight: 500;
+  font-size: 12.5px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.tag {
+  border: 1px solid rgba(34, 49, 72, 0.18);
+  background: rgba(210, 199, 184, 0.22);
+  color: rgba(34, 49, 72, 0.86);
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* ===================== GRIDS BASE ===================== */
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 12mm;
+}
+
+/* Grid interno (Folha 2: Conselho de Pastores) */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 10mm;
+  align-items: start;
+}
+
+.stack {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===================== COMPONENTES: CARD ===================== */
+.card {
+  border: 1px solid rgba(34, 49, 72, 0.14);
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(34, 49, 72, 0.08);
+}
+
+.cardHead {
+  padding: 12px 12px 10px;
+  border-bottom: 1px solid rgba(34, 49, 72, 0.12);
+  background: linear-gradient(
+    120deg,
+    rgba(47, 72, 109, 0.1),
+    rgba(210, 199, 184, 0.1)
+  );
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  font-size: 14px;
+}
+
+.cardHint {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  color: rgba(34, 49, 72, 0.7);
+  font-weight: 600;
+}
+
+.badge {
+  background: rgba(47, 72, 109, 0.12);
+  border: 1px solid rgba(47, 72, 109, 0.22);
+  color: var(--navy);
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cardBody {
+  padding: 12px;
+}
+
+/* ===================== COMPONENTES: LISTA (itens) ===================== */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(34, 49, 72, 0.1);
+  background: rgba(243, 234, 224, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--blue), rgba(47, 72, 109, 0.28));
+}
+
+.bullet {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--blue);
+  box-shadow: 0 0 0 6px rgba(47, 72, 109, 0.1);
+  margin-top: 5px;
+}
+
+.txt {
+  min-width: 0;
+}
+
+.role {
+  margin: 0;
+  font-weight: 900;
+  color: var(--navy);
+  font-size: 12px;
+  letter-spacing: -0.01em;
+  font-family: var(--titleFont);
+}
+
+.name {
+  margin: 3px 0 0;
+  color: rgba(34, 49, 72, 0.88);
+  font-weight: 700;
+  font-size: 12.2px;
+}
+
+.note {
+  margin: 4px 0 0;
+  color: rgba(34, 49, 72, 0.68);
+  font-weight: 600;
+  font-size: 11px;
+}
+
+/* ===================== COMPONENTES: MEMBROS (chips) ===================== */
+.membersTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  font-size: 12px;
+}
+
+.members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.member {
+  border: 1px solid rgba(34, 49, 72, 0.14);
+  background: rgba(255, 255, 255, 0.16);
+  padding: 7px 9px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 11px;
+  color: rgba(34, 49, 72, 0.86);
+  white-space: nowrap;
+}
+
+/* ===================== RODAPÉ ===================== */
+.footer {
+  position: absolute;
+  left: var(--padX);
+  right: var(--padX);
+  bottom: 10mm;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(34, 49, 72, 0.12);
+  color: rgba(34, 49, 72, 0.7);
+  font-size: 11px;
+  font-weight: 700;
+  z-index: 1;
+}
+
+/* ===================== QUEBRA DE PÁGINA ===================== */
+.page-break {
+  break-after: page;
+  page-break-after: always;
+}
+
+/* =========================================================
+   FOLHA 1: PASTORES CONVENCIONAIS
+========================================================= */
+.conventional {
+  position: relative;
+  z-index: 1;
+  margin-top: 10mm;
+}
+
+.convList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10mm;
+}
+
+.convItem {
+  border-radius: 16px;
+  border: 1px solid rgba(34, 49, 72, 0.1);
+  background: rgba(243, 234, 224, 0.42);
+  padding: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.convItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--blue), rgba(47, 72, 109, 0.22));
+}
+
+.convName {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  font-size: 12.8px;
+}
+
+.convRole {
+  margin: 6px 0 0;
+  font-size: 11.6px;
+  color: rgba(34, 49, 72, 0.78);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.convOrg {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: rgba(34, 49, 72, 0.62);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   FOLHA 3: LÍDERES CONGREGACIONAIS
+========================================================= */
+.areaGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10mm;
+}
+
+.areaCard {
+  border-radius: var(--radius);
+  border: 1px solid rgba(34, 49, 72, 0.14);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 40px rgba(34, 49, 72, 0.08);
+  overflow: hidden;
+}
+
+.areaHead {
+  padding: 12px 12px 10px;
+  border-bottom: 1px solid rgba(34, 49, 72, 0.12);
+  background: linear-gradient(
+    120deg,
+    rgba(47, 72, 109, 0.12),
+    rgba(210, 199, 184, 0.1)
+  );
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.areaTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  font-size: 14px;
+}
+
+.areaSupervisor {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  color: rgba(34, 49, 72, 0.78);
+  font-weight: 700;
+}
+
+.areaSupervisor span {
+  color: rgba(34, 49, 72, 0.64);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.areaBody {
+  padding: 12px;
+}
+
+.congList {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.congItem {
+  border-radius: 14px;
+  border: 1px solid rgba(34, 49, 72, 0.1);
+  background: rgba(243, 234, 224, 0.42);
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.congItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--blue), rgba(47, 72, 109, 0.25));
+}
+
+.congName {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  font-size: 12px;
+}
+
+.congLeaders {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  color: rgba(34, 49, 72, 0.86);
+  font-weight: 700;
+}
+
+/* Área 3 em largura total */
+.areaFull {
+  grid-column: 1 / -1;
+}
+
+/* =========================================================
+   FOLHAS 4/5: DEPARTAMENTOS
+========================================================= */
+.deptGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10mm;
+}
+
+.deptCard {
+  border-radius: var(--radius);
+  border: 1px solid rgba(34, 49, 72, 0.14);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 40px rgba(34, 49, 72, 0.08);
+  overflow: hidden;
+}
+
+.deptHead {
+  padding: 12px 12px 10px;
+  border-bottom: 1px solid rgba(34, 49, 72, 0.12);
+  background: linear-gradient(
+    120deg,
+    rgba(47, 72, 109, 0.12),
+    rgba(210, 199, 184, 0.1)
+  );
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.deptTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.deptSubtitle {
+  margin: 4px 0 0;
+  font-size: 11.5px;
+  color: rgba(34, 49, 72, 0.76);
+  font-weight: 700;
+}
+
+.deptBody {
+  padding: 12px;
+}
+
+.roles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roleRow {
+  border-radius: 14px;
+  border: 1px solid rgba(34, 49, 72, 0.1);
+  background: rgba(243, 234, 224, 0.42);
+  padding: 9px 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.roleRow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--blue), rgba(47, 72, 109, 0.25));
+}
+
+.roleLabel {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  font-size: 11.5px;
+  text-transform: uppercase;
+}
+
+.roleValue {
+  margin: 4px 0 0;
+  font-size: 11.6px;
+  color: rgba(34, 49, 72, 0.86);
+  font-weight: 750;
+}
+
+.roleValue .subline {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  color: rgba(34, 49, 72, 0.7);
+  font-weight: 700;
+}
+
+/* Chips para múltiplos nomes */
+.nameChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 6px;
+}
+
+.nameChip {
+  border: 1px solid rgba(34, 49, 72, 0.14);
+  background: rgba(255, 255, 255, 0.16);
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-weight: 850;
+  font-size: 10.8px;
+  color: rgba(34, 49, 72, 0.86);
+  white-space: nowrap;
+}
+
+.deptFull {
+  grid-column: 1 / -1;
+}
+
+/* ===================== RESPONSIVO (WEB) ===================== */
+@media (max-width: 920px) {
+  .areaGrid,
+  .deptGrid,
+  .convList,
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .areaFull,
+  .deptFull {
+    grid-column: auto;
+  }
+}
+
+/* =========================================================
+   PRINT BASE (mantém seu comportamento original)
+========================================================= */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .wrap {
+    gap: 0;
+  }
+
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    margin: 0;
+    background: #fff;
+  }
+
+  .sheet::before,
+  .sheet::after {
+    display: none;
+  }
+}
+
+/* =========================================================
+   PRINT-ONLY: PDF idêntico ao layout A4 (mantido do seu CSS)
+   (cole no FINAL do CSS)
+========================================================= */
+@media print {
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .wrap {
+    gap: 0 !important;
+  }
+
+  .sheet {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 0 !important;
+    max-height: 297mm !important;
+
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    overflow: hidden !important;
+
+    padding: var(--padY) var(--padX) !important;
+    padding-bottom: calc(var(--padY) + 22mm) !important;
+
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
+  .sheet::before,
+  .sheet::after {
+    display: none !important;
+  }
+
+  .top {
+    margin-bottom: 10mm !important;
+  }
+
+  .footer {
+    position: absolute !important;
+    left: var(--padX) !important;
+    right: var(--padX) !important;
+    bottom: 10mm !important;
+  }
+
+  .card,
+  .areaCard,
+  .deptCard,
+  .conventional,
+  .convItem,
+  .item,
+  .roleRow,
+  .congItem,
+  .convList,
+  .areaGrid,
+  .deptGrid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .grid,
+  .grid2,
+  .areaGrid,
+  .deptGrid,
+  .convList {
+    grid-template-columns: 1fr !important;
+    gap: 6mm !important;
+  }
+
+  .areaFull,
+  .deptFull {
+    grid-column: auto !important;
+  }
+
+  * {
+    text-rendering: geometricPrecision !important;
+  }
+}
+
+/* Faz o Chrome respeitar tamanho A4 */
+@page {
+  size: A4;
+  margin: 0;
+}
