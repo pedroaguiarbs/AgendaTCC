@@ -1,0 +1,123 @@
+import type { Role } from "../types/agenda";
+export const roles: Role[] = [
+  {
+    label: "Diretor",
+    value: "Pr. Josivaldo Silva dos Santos",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "Coordenador",
+    value: "Ev. Jorge da Silva Lopes",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "Presidente Geral",
+    value: "Miss. Edite Pereira Alves",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "Liderança",
+    value: "Pr. Bolivar Dias Teixeira",
+    valueTag: "p",
+    subline: "Miss. Marlene Lira",
+  },
+  {
+    label: "Líder",
+    value: "Miss. Alcineia de Sousa Almeida Oliveira",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "Liderança",
+    value: "Pb. Weder Queiroz Cruz",
+    valueTag: "p",
+    subline: "Miss. Josy Carvalho",
+  },
+  {
+    label: "Liderança",
+    value: "Pb. Ennio Willian",
+    valueTag: "p",
+    subline: "Miss. Renália Machado",
+  },
+  {
+    label: "Líder",
+    value: "Pb. Marcos Aguiar",
+    valueTag: "p",
+    subline: "Miss. Jozielma Aguiar",
+  },
+  {
+    label: "Líder",
+    value: "Miss. Ilma Aguiar Brito dos Santos",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "Líder",
+    value: "Miss. Ilma Aguiar Brito dos Santos",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "Líder",
+    value: "Pb. Wilson Ferreira Barros",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "Líder",
+    value: "Miss. Cecília Costa Duarte",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "Superintendente",
+    value: "Luis Alves Cardoso",
+    valueTag: "span",
+    subline: null,
+  },
+  {
+    label: "Líder",
+    value: "Pb. Vanderlei Ferreira",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "1º Maestro",
+    value: "Luis Alves Cardoso",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "2º Maestro",
+    value: "Miqueias Alves da Rocha Cesar",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "Maestro de Honra",
+    value: "Antônio Sousa Pereira",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "Líder",
+    value: "Heytor Souza",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "1º Vice",
+    value: "Dc. Isaac Silva",
+    valueTag: "p",
+    subline: null,
+  },
+  {
+    label: "2ª Vice",
+    value: "Ruanna Santana",
+    valueTag: "p",
+    subline: null,
+  },
+];

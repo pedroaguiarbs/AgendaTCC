@@ -1,0 +1,432 @@
+/* =========================================================
+   Programação Semanal — estilo próprio (não parece “estrutura”)
+========================================================= */
+
+.weekTop {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 9mm;
+  border-bottom: 1px solid rgba(34, 49, 72, 0.14);
+  margin-bottom: 9mm;
+}
+
+.weekKicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(34, 49, 72, 0.7);
+  font-weight: 800;
+}
+
+.weekDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--blue);
+  box-shadow: 0 0 0 7px rgba(47, 72, 109, 0.1);
+}
+
+.weekTitle {
+  margin: 6px 0 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  font-size: 30px;
+  line-height: 1.08;
+}
+
+.weekSub {
+  margin: 6px 0 0;
+  max-width: 70ch;
+  color: rgba(34, 49, 72, 0.78);
+  font-weight: 550;
+  font-size: 12.5px;
+}
+
+.weekTopRight {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.weekPill {
+  border: 1px solid rgba(34, 49, 72, 0.18);
+  background: rgba(210, 199, 184, 0.22);
+  color: rgba(34, 49, 72, 0.86);
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+/* --- timeline em 2 colunas --- */
+.weekTimeline2 {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12mm;
+  align-items: start;
+  padding-top: 2mm;
+}
+
+/* Linha “guia” de cada coluna */
+.weekCol {
+  position: relative;
+  padding-left: 18px;
+}
+
+.weekCol::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 2px;
+  bottom: 2px;
+  width: 2px;
+  background: rgba(34, 49, 72, 0.14);
+}
+
+/* Dia (sem aparência de card quadrado) */
+.weekDay {
+  position: relative;
+  padding: 10px 10px 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 22px; /* mais orgânico */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.1)
+  );
+  border: 1px solid rgba(34, 49, 72, 0.12);
+  box-shadow: 0 12px 30px rgba(34, 49, 72, 0.06);
+}
+
+/* Marcador do dia na linha */
+.weekDay::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 18px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--blue);
+  box-shadow: 0 0 0 7px rgba(47, 72, 109, 0.1);
+}
+
+/* Cabeçalho do dia */
+.weekDayHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.weekDayName {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  font-size: 13px;
+}
+
+.weekDayBadge {
+  border: 1px solid rgba(34, 49, 72, 0.16);
+  background: rgba(243, 234, 224, 0.52);
+  color: rgba(34, 49, 72, 0.86);
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Slots (pílulas de evento) */
+.weekSlots {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.weekSlot {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 10px;
+  align-items: start;
+
+  padding: 8px 10px;
+  border-radius: 16px;
+  background: rgba(243, 234, 224, 0.48);
+  border: 1px solid rgba(34, 49, 72, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* “Fita” lateral */
+.weekSlot::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(
+    to bottom,
+    rgba(47, 72, 109, 0.85),
+    rgba(47, 72, 109, 0.25)
+  );
+}
+
+/* destaque para cultos principais */
+.weekSlot--main {
+  background: rgba(47, 72, 109, 0.06);
+  border-color: rgba(47, 72, 109, 0.16);
+}
+
+.weekTime {
+  font-family: var(--titleFont);
+  font-weight: 950;
+  color: var(--navy);
+  font-size: 11.5px;
+}
+
+.weekEvent {
+  margin: 0;
+  font-weight: 850;
+  color: rgba(34, 49, 72, 0.92);
+  font-size: 11.6px;
+}
+
+.weekMeta {
+  margin: 2px 0 0;
+  color: rgba(34, 49, 72, 0.66);
+  font-weight: 650;
+  font-size: 11px;
+}
+
+/* Domingo com “toque especial”, sem virar card */
+.weekDay--sunday {
+  border-color: rgba(47, 72, 109, 0.18);
+  background:
+    radial-gradient(
+      380px 220px at 20% 0%,
+      rgba(47, 72, 109, 0.1),
+      transparent 60%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.1));
+}
+
+/* Nota discreta no final (opcional) */
+.weekNote {
+  grid-column: 1 / -1;
+  margin-top: 4mm;
+  border-top: 1px dashed rgba(34, 49, 72, 0.18);
+  padding-top: 10px;
+}
+
+.weekNoteTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  color: var(--navy);
+  font-size: 12px;
+}
+
+.weekNoteText {
+  margin: 6px 0 0;
+  color: rgba(34, 49, 72, 0.72);
+  font-weight: 650;
+  font-size: 11.2px;
+  line-height: 1.35;
+}
+
+/* Responsivo */
+@media (max-width: 920px) {
+  .weekTimeline2 {
+    grid-template-columns: 1fr;
+  }
+  .weekNote {
+    grid-column: auto;
+  }
+}
+
+/* Print: mantém igual ao web */
+@media print {
+  .weekTimeline2 {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10mm !important;
+  }
+}
+
+/* =========================================================
+   Tema Dark (Premium) — SOMENTE Programação Semanal
+========================================================= */
+
+.weekSheet--dark {
+  /* Fundo do “papel” invertido */
+  background:
+    radial-gradient(
+      900px 520px at 20% 10%,
+      rgba(210, 199, 184, 0.14),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 520px at 90% 30%,
+      rgba(47, 72, 109, 0.28),
+      transparent 58%
+    ),
+    linear-gradient(180deg, rgba(34, 49, 72, 0.96), rgba(24, 35, 55, 0.98));
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* remove as “texturas” claras padrão da sheet nessa página */
+.weekSheet--dark.sheet::before,
+.weekSheet--dark.sheet::after {
+  opacity: 0.35;
+  filter: blur(0.5px);
+}
+
+/* Topo */
+.weekSheet--dark .weekKicker {
+  color: rgba(255, 255, 255, 0.7);
+}
+.weekSheet--dark .weekDot {
+  background: rgba(210, 199, 184, 0.95);
+  box-shadow: 0 0 0 7px rgba(210, 199, 184, 0.16);
+}
+
+.weekSheet--dark .weekTitle {
+  color: rgba(255, 255, 255, 0.95);
+}
+.weekSheet--dark .weekSub {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.weekSheet--dark .weekTop {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Pills do topo */
+.weekSheet--dark .weekPill {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+/* Linha da timeline por coluna */
+.weekSheet--dark .weekCol::before {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Dia (painel orgânico) */
+.weekSheet--dark .weekDay {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.06)
+  );
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+}
+
+.weekSheet--dark .weekDay::before {
+  background: rgba(210, 199, 184, 0.95); /* “bege premium” como marcador */
+  box-shadow: 0 0 0 7px rgba(210, 199, 184, 0.16);
+}
+
+.weekSheet--dark .weekDayName {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.weekSheet--dark .weekDayBadge {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(210, 199, 184, 0.12);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* Slots */
+.weekSheet--dark .weekSlot {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.weekSheet--dark .weekSlot::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(210, 199, 184, 0.95),
+    rgba(210, 199, 184, 0.22)
+  );
+}
+
+.weekSheet--dark .weekSlot--main {
+  background: rgba(47, 72, 109, 0.2);
+  border-color: rgba(210, 199, 184, 0.18);
+}
+
+.weekSheet--dark .weekTime {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.weekSheet--dark .weekEvent {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.weekSheet--dark .weekMeta {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* Domingo */
+.weekSheet--dark .weekDay--sunday {
+  border-color: rgba(210, 199, 184, 0.22);
+  background:
+    radial-gradient(
+      420px 240px at 15% 0%,
+      rgba(210, 199, 184, 0.12),
+      transparent 62%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.06)
+    );
+}
+
+/* Nota */
+.weekSheet--dark .weekNote {
+  border-top-color: rgba(255, 255, 255, 0.14);
+}
+
+.weekSheet--dark .weekNoteTitle {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.weekSheet--dark .weekNoteText {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+/* Rodapé */
+.weekSheet--dark .footer {
+  border-top-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Print: garante que o Chrome imprima as cores */
+@media print {
+  .weekSheet--dark {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

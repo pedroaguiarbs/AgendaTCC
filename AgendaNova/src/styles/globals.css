@@ -1,0 +1,15 @@
+/* Theme/utilities only: Preflight would change the reference document's reset. */
+@layer theme, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+/* Preserve this order: later legacy rules intentionally override earlier ones. */
+@import "./fonts.css";
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./components.css";
+@import "./print.css";
+@import "./weekly.css";
+@import "./months.css";
+@import "./calendar-26.css";

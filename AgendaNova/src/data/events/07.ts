@@ -1,0 +1,156 @@
+import type { AgendaEvent } from "../../types/agenda";
+export const events7: AgendaEvent[] = [
+  {
+    id: "event-07-001",
+    startDate: "2026-07-01",
+    endDate: null,
+    dayLabel: "01",
+    monthLabel: "Jul",
+    weekdayLabel: "Qua",
+    title: "Aniversário Assembleia de Deus em Araguatins",
+    level: 3,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Data comemorativa",
+        variant: "pillPlace is-data",
+      },
+    ],
+  },
+  {
+    id: "event-07-002",
+    startDate: "2026-07-01",
+    endDate: null,
+    dayLabel: "01",
+    monthLabel: "Jul",
+    weekdayLabel: "Qua",
+    title: "Culto de Adolescentes (Pré-férias)",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Sede",
+        variant: "pillPlace is-sede",
+      },
+    ],
+  },
+  {
+    id: "event-07-003",
+    startDate: "2026-07-04",
+    endDate: null,
+    dayLabel: "04",
+    monthLabel: "Jul",
+    weekdayLabel: "Sáb",
+    title: "Confraternização de Casais",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Congregação Vida Nova",
+        variant: "pillPlace is-area3",
+      },
+    ],
+  },
+  {
+    id: "event-07-004",
+    startDate: "2026-07-08",
+    endDate: null,
+    dayLabel: "08",
+    monthLabel: "Jul",
+    weekdayLabel: "Qua",
+    title: "Culto de Casais",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Sede",
+        variant: "pillPlace is-sede",
+      },
+    ],
+  },
+  {
+    id: "event-07-005",
+    startDate: "2026-07-09",
+    endDate: "2026-07-12",
+    dayLabel: "09-12",
+    monthLabel: "Jul",
+    weekdayLabel: "Qui/Dom",
+    title: "Assembleia Geral Ordinária (AGO) | Colinas - TO",
+    level: 3,
+    rangeStyle: true,
+    badges: [
+      {
+        label: "CIADSETA",
+        variant: "pillPlace is-area4",
+      },
+    ],
+  },
+  {
+    id: "event-07-006",
+    startDate: "2026-07-15",
+    endDate: null,
+    dayLabel: "15",
+    monthLabel: "Jul",
+    weekdayLabel: "Qua",
+    title: "TCH — Família",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Visita aos Lares",
+        variant: "pillPlace is-visita",
+      },
+    ],
+  },
+  {
+    id: "event-07-007",
+    startDate: "2026-07-18",
+    endDate: null,
+    dayLabel: "18",
+    monthLabel: "Jul",
+    weekdayLabel: "Sáb",
+    title: "Cruzada Evangelística",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Congregação El Shaday",
+        variant: "pillPlace is-area3",
+      },
+    ],
+  },
+  {
+    id: "event-07-008",
+    startDate: "2026-07-25",
+    endDate: null,
+    dayLabel: "25",
+    monthLabel: "Jul",
+    weekdayLabel: "Sáb",
+    title: "Cruzada Evangelística",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Congregação Maranata",
+        variant: "pillPlace is-area3",
+      },
+    ],
+  },
+  {
+    id: "event-07-009",
+    startDate: "2026-07-29",
+    endDate: null,
+    dayLabel: "29",
+    monthLabel: "Jul",
+    weekdayLabel: "Qua",
+    title: "Culto de Adolescentes (Voltando das férias)",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Sede",
+        variant: "pillPlace is-sede",
+      },
+    ],
+  },
+];
