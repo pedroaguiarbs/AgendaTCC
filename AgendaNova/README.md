@@ -84,3 +84,7 @@ O teste de impressão exige a nova aplicação ativa. Ele serve o original tempo
 Os resultados de geometria e as capturas ficam em `artifacts/validation/`. `test:pdf` deve ser executado após os dois exportadores e lê os PDFs reais: verifica 34 páginas A4, bytes e metadados. Ele usa o diretório padrão `artifacts/pdf`.
 
 A comparação automatizada cobre o comportamento do Chromium validado, não certifica todos os navegadores ou impressoras. O layout original usa recorte por `overflow: hidden`; conservar suas dimensões não garante que futuras inclusões de conteúdo caibam na folha. Revise capturas ao editar conteúdo ou estilos.
+
+## Experimento reproduzível (somente AgendaNova)
+
+Consulte [o protocolo e as instruções para Windows](docs/experimento.md). `npm run experiment:pilot` faz um piloto identificado separadamente; `npm run experiment` faz dois aquecimentos e dez blocos pareados medidos. Texto e comparação visual são executados depois, por `npm run experiment:analyze -- "caminho-da-sessao"`. Os exportadores e o layout permanecem inalterados.
