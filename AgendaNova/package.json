@@ -12,24 +12,34 @@
     "test:print": "tsx tests/print.ts",
     "pdf:direct": "tsx scripts/pdf/export-direct.ts",
     "pdf:raster": "tsx scripts/pdf/export-raster.ts",
-    "test:pdf": "tsx --test tests/pdf.test.ts"
+    "test:pdf": "tsx --test tests/pdf.test.ts",
+    "experiment": "tsx scripts/experiment/run.ts",
+    "experiment:pilot": "tsx scripts/experiment/run.ts --pilot",
+    "experiment:analyze": "tsx scripts/experiment/analyze.ts",
+    "experiment:clean-png": "tsx scripts/experiment/clean-png.ts",
+    "test:experiment": "tsx --test tests/experiment/*.test.ts",
+    "experiment:report": "tsx scripts/experiment/report.ts"
   },
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@napi-rs/canvas": "1.0.13",
+    "@tailwindcss/vite": "^4.1.0",
     "@types/node": "^24.0.0",
+    "@types/pngjs": "6.0.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.0",
-    "vite": "^7.0.0",
-    "typescript": "~5.9.3",
-    "tailwindcss": "^4.1.0",
-    "@tailwindcss/vite": "^4.1.0",
-    "playwright": "1.57.0",
     "pdf-lib": "1.17.1",
-    "tsx": "^4.20.0"
+    "pdfjs-dist": "6.4.299",
+    "playwright": "1.57.0",
+    "pngjs": "7.0.0",
+    "tailwindcss": "^4.1.0",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.0.0"
   },
   "engines": {
     "node": ">=22.12.0"
