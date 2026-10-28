@@ -1,0 +1,25 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { events } from "../src/data/events";
+import { events as referenceEvents } from "../../AgendaNova/src/data/events";
+import { monthlyPages } from "../src/data/monthly-pages";
+import { monthlyPages as referenceMonthlyPages } from "../../AgendaNova/src/data/monthly-pages";
+import { pagePlan } from "../src/data/page-plan";
+import { pagePlan as referencePagePlan } from "../../AgendaNova/src/data/page-plan";
+import { weeklySchedule } from "../src/data/weekly-schedule";
+import { weeklySchedule as referenceWeeklySchedule } from "../../AgendaNova/src/data/weekly-schedule";
+import { institutionalContent } from "../src/data/institutional";
+import { institutionalContent as referenceContent } from "../../AgendaNova/src/data/institutional";
+import { roles } from "../src/data/organization";
+import { roles as referenceRoles } from "../../AgendaNova/src/data/organization";
+import { calendarMonths } from "../src/data/calendar";
+import { calendarMonths as referenceCalendar } from "../../AgendaNova/src/data/calendar";
+test("simplified version changes presentation only: the experimental dataset and page plan match AgendaNova", () => {
+  assert.deepEqual(events, referenceEvents);
+  assert.deepEqual(monthlyPages, referenceMonthlyPages);
+  assert.deepEqual(pagePlan, referencePagePlan);
+  assert.deepEqual(weeklySchedule, referenceWeeklySchedule);
+  assert.deepEqual(institutionalContent, referenceContent);
+  assert.deepEqual(roles, referenceRoles);
+  assert.deepEqual(calendarMonths, referenceCalendar);
+});

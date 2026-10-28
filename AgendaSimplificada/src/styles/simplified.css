@@ -1,0 +1,109 @@
+/* Independent experimental version. Keep A4 geometry and all content unchanged.
+   The same solid-color profile is used on screen and by BOTH PDF exporters.
+   Do not alter font metrics, widths, padding, gaps, page breaks or counters here. */
+body {
+  background: #f1f5f9 !important;
+}
+#root .sheet,
+#root .sheet *,
+#root .sheet::before,
+#root .sheet::after,
+#root .sheet *::before,
+#root .sheet *::after {
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+  color: #223148 !important;
+  border-color: #cbd5e1 !important;
+}
+#root .sheet {
+  background-color: #fff !important;
+}
+#root .sheet * {
+  background-color: transparent !important;
+}
+/* Large decorative overlays only. Leave textual pseudo-elements (especially
+   the footer page counter and continuation labels) untouched. */
+#root .sheet::before,
+#root .sheet::after,
+.monthRail::before,
+.weekSheet--dark::before,
+.weekSheet--dark::after {
+  display: none !important;
+}
+/* Opaque fills retain hierarchy without dark panels or gradients. */
+#root .sheet .monthRail,
+#root .sheet .monthBar,
+#root .sheet .cardHead,
+#root .sheet .areaHead,
+#root .sheet .deptHead,
+#root .sheet .weekDayHead {
+  background-color: #e2e8f0 !important;
+}
+#root .sheet .monthCard,
+#root .sheet .weekDay,
+#root .sheet .serviceCard,
+#root .sheet .serviceContacts,
+#root .sheet .contactItem,
+#root .sheet .editorialVerse {
+  background-color: #f8fafc !important;
+}
+#root .sheet .monthEvent--lvl3 .monthCard,
+#root .sheet .weekSlot--main {
+  background-color: #e2e8f0 !important;
+}
+#root .sheet .tag,
+#root .sheet .badge,
+#root .sheet .weekPill,
+#root .sheet .weekDayBadge,
+#root .sheet .pillTag,
+#root .sheet .pillPlace {
+  background-color: #f1f5f9 !important;
+}
+/* Solid category colors keep existing event distinctions legible. */
+#root .sheet .pillPlace.is-sede,
+#root .sheet .pillPlace.is-campo,
+#root .sheet .pillPlace.is-area4 {
+  background-color: #dbeafe !important;
+  color: #1e3a8a !important;
+}
+#root .sheet .pillPlace.is-visita,
+#root .sheet .pillPlace.is-area3 {
+  background-color: #dcfce7 !important;
+  color: #14532d !important;
+}
+#root .sheet .pillPlace.is-area1,
+#root .sheet .pillPlace.is-area2,
+#root .sheet .pillPlace.is-jovens {
+  background-color: #ede9fe !important;
+  color: #4c1d95 !important;
+}
+#root .sheet .pillPlace.is-date,
+#root .sheet .pillPlace.is-data,
+#root .sheet .pillPlace.is-retiro {
+  background-color: #fef3c7 !important;
+  color: #78350f !important;
+}
+/* Keep small navigation/calendar markers visible after removing their glows. */
+#root .sheet .dot,
+#root .sheet .weekDot,
+#root .sheet .bullet {
+  background-color: #2f486d !important;
+}
+@media print {
+  body {
+    background: #fff !important;
+  }
+}
+
+/* More specific than inherited print fixes, including generated decorations. */
+#root .sheet::before,
+#root .sheet::after,
+#root .sheet *::before,
+#root .sheet *::after {
+  background-color: transparent !important;
+}

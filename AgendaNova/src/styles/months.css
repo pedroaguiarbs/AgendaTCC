@@ -1,0 +1,913 @@
+/* =========================================================
+   PROGRAMAÇÃO MENSAL — BASE (Tema claro)
+========================================================= */
+
+.monthSheet {
+  width: 210mm;
+  min-height: 297mm;
+
+  display: grid;
+  grid-template-columns: 46mm calc(210mm - 46mm);
+  gap: 0;
+  padding: 0;
+  overflow: hidden; /* evita qualquer “vazamento” aumentar a largura */
+}
+
+/* =========================
+   Barra lateral (rail)
+========================= */
+.monthRail {
+  position: relative;
+  border-right: 1px solid rgba(34, 49, 72, 0.14);
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      520px 520px at 20% 10%,
+      rgba(210, 199, 184, 0.22),
+      transparent 55%
+    ),
+    radial-gradient(
+      520px 520px at 70% 90%,
+      rgba(255, 255, 255, 0.1),
+      transparent 60%
+    ),
+    linear-gradient(180deg, rgba(47, 72, 109, 0.98), rgba(34, 49, 72, 0.98));
+}
+
+.monthRail::before {
+  content: "";
+  position: absolute;
+  inset: -30mm -40mm auto auto;
+  width: 120mm;
+  height: 120mm;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(255, 255, 255, 0.14),
+    transparent 62%
+  );
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.monthRailInner {
+  width: 46mm;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  gap: 10px;
+  padding: 10mm 6mm;
+  text-align: center;
+
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.monthRailKicker {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 850;
+}
+
+/* mês grande dominando a faixa */
+.monthRailName {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.98);
+  font-size: 58px;
+  line-height: 0.95;
+}
+
+/* =========================
+   Conteúdo principal
+========================= */
+.monthMain {
+  position: relative;
+  padding: var(--padY) var(--padX);
+  padding-bottom: calc(var(--padY) + 24mm); /* reserva do rodapé */
+  z-index: 1;
+}
+
+.monthTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 7mm;
+  border-bottom: 1px solid rgba(34, 49, 72, 0.14);
+  margin-bottom: 7mm;
+}
+
+.monthTitle {
+  margin: 6px 0 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.monthSub {
+  max-width: 68ch;
+}
+
+/* =========================
+   Timeline
+========================= */
+.monthTimeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 18px; /* espaço da linha + bolinha */
+}
+
+.monthTimeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(47, 72, 109, 0.22),
+    rgba(47, 72, 109, 0.08)
+  );
+}
+
+.monthEvent {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 12px;
+  align-items: stretch;
+  position: relative;
+}
+
+.monthEvent::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 18px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--blue);
+  box-shadow: 0 0 0 6px rgba(47, 72, 109, 0.12);
+}
+
+/* data */
+.monthDate {
+  border-radius: 16px;
+  border: 1px solid rgba(34, 49, 72, 0.12);
+  background: rgba(255, 255, 255, 0.18);
+  padding: 10px;
+  text-align: center;
+}
+
+.monthDay {
+  display: block;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  color: var(--navy);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.monthMonth {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(34, 49, 72, 0.66);
+  font-weight: 900;
+}
+
+.monthWeekday {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(34, 49, 72, 0.72);
+}
+
+/* card do evento */
+.monthCard {
+  border-radius: 18px;
+  border: 1px solid rgba(34, 49, 72, 0.12);
+  background: rgba(243, 234, 224, 0.35);
+  padding: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.monthCard::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(
+    to bottom,
+    rgba(47, 72, 109, 0.95),
+    rgba(47, 72, 109, 0.2)
+  );
+}
+
+/* =========================
+   Hierarquia por “nível” (sem selo)
+   lvl2 = azul médio | lvl3 = azul escuro
+========================= */
+
+/* padrão (lvl1) continua como está: card claro */
+
+.monthEvent--lvl2 .monthCard {
+  background:
+    linear-gradient(180deg, rgba(36, 114, 196, 0.16), rgba(36, 114, 196, 0.1)),
+    rgba(243, 234, 224, 0.22);
+  border-color: rgba(36, 114, 196, 0.22);
+}
+
+.monthEvent--lvl2 .monthCard::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(36, 114, 196, 0.95),
+    rgba(36, 114, 196, 0.25)
+  );
+}
+
+/* nível 3: “semana dark”, mais impactante */
+.monthEvent--lvl3 .monthCard {
+  background: linear-gradient(
+    180deg,
+    rgba(34, 49, 72, 0.92),
+    rgba(34, 49, 72, 0.82)
+  );
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.monthEvent--lvl3 .monthCard::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(210, 199, 184, 0.95),
+    rgba(210, 199, 184, 0.15)
+  );
+}
+
+/* texto no nível 3 precisa “virar claro” */
+.monthEvent--lvl3 .monthEventTitle {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.monthEvent--lvl3 .pillPlace,
+.monthEvent--lvl3 .pillTag {
+  color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.monthEvent--lvl3 .monthMonth {
+  color: rgba(34, 49, 72, 0.66); /* fica na caixinha da data (clara) */
+}
+
+.monthEventTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  font-size: 13px;
+}
+
+.monthEventMeta {
+  margin: 6px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+/* =========================================================
+   PILLS — Base (tema claro)
+========================================================= */
+
+/* pills base */
+.pillPlace,
+.pillTag {
+  border: 1px solid rgba(34, 49, 72, 0.14);
+  background: rgba(255, 255, 255, 0.16);
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-weight: 850;
+  font-size: 10.8px;
+  color: rgba(34, 49, 72, 0.86);
+  white-space: nowrap;
+
+  /* melhora leitura e “acabamento” */
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* tags */
+.pillTag {
+  background: rgba(47, 72, 109, 0.12);
+  border-color: rgba(47, 72, 109, 0.22);
+  color: rgba(34, 49, 72, 0.92);
+}
+
+/* =========================================================
+   Selos de categoria (mais vivos) — tema claro
+========================================================= */
+
+.pillPlace {
+  font-weight: 900;
+}
+
+/* SEDE: azul vivo (mais contrastado) */
+.pillPlace.is-sede {
+  background: rgba(0, 122, 255, 0.22);
+  border-color: rgba(0, 122, 255, 0.55);
+  color: rgba(0, 48, 115, 0.98);
+}
+
+/* VISITA AOS LARES: verde vivo */
+.pillPlace.is-visita {
+  background: rgba(0, 200, 83, 0.22);
+  border-color: rgba(0, 200, 83, 0.55);
+  color: rgba(0, 88, 40, 0.98);
+}
+
+/* TRABALHADORES/LIDERANÇAS DO CAMPO: laranja vivo */
+.pillPlace.is-campo {
+  background: rgba(255, 149, 0, 0.22);
+  border-color: rgba(255, 149, 0, 0.6);
+  color: rgba(120, 58, 0, 0.98);
+}
+
+/* =========================================================
+   VARIANTE AUTOMÁTICA PARA CARD ESCURO (NÍVEL 3)
+   Ajusta as cores dos pills para ficarem legíveis no fundo azul.
+   -> troque .monthEvent--lvl3 pelo nome REAL da sua classe de nível 3
+========================================================= */
+
+.monthEvent--lvl3 .pillPlace,
+.monthEvent--lvl3 .pillTag {
+  border-color: rgba(255, 255, 255, 0.18);
+  /* leve "glow" pra destacar sem ficar exagerado */
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+/* Categoria SEDE (no escuro vira azul claro) */
+.monthEvent--lvl3 .pillPlace.is-sede {
+  background: rgba(96, 165, 250, 0.92);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(12, 18, 33, 0.95);
+}
+
+/* Categoria VISITA (no escuro vira verde claro) */
+.monthEvent--lvl3 .pillPlace.is-visita {
+  background: rgba(134, 239, 172, 0.92);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: rgba(8, 28, 18, 0.92);
+}
+
+/* Categoria CAMPO (no escuro vira âmbar claro) */
+.monthEvent--lvl3 .pillPlace.is-campo {
+  background: rgba(253, 230, 138, 0.92);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: rgba(114, 59, 0, 0.92);
+}
+
+/* Tag genérica (ex: “Destaque”) no escuro */
+.monthEvent--lvl3 .pillTag {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* =========================================================
+   Seus estilos de destaque (mantive)
+========================================================= */
+
+.monthEvent--highlight::before {
+  background: rgba(210, 199, 184, 0.98);
+  box-shadow: 0 0 0 6px rgba(210, 199, 184, 0.16);
+}
+
+.monthEvent--highlight .monthCard {
+  background:
+    radial-gradient(
+      420px 260px at 10% 0%,
+      rgba(210, 199, 184, 0.22),
+      transparent 60%
+    ),
+    rgba(243, 234, 224, 0.38);
+  border-color: rgba(47, 72, 109, 0.16);
+}
+
+/* regular: menos “peso visual”, mas continua legível */
+.monthEvent--regular {
+  opacity: 0.88;
+}
+.monthEvent--regular .monthCard::before {
+  opacity: 0.6;
+}
+
+/* rodapé */
+.monthFooter {
+  left: var(--padX);
+  right: var(--padX);
+}
+
+/* =========================
+   Box: Programação regular (compacto)
+========================= */
+.monthRegular {
+  margin-top: 8mm;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(34, 49, 72, 0.12);
+  background: rgba(243, 234, 224, 0.35);
+}
+
+.monthRegularTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(34, 49, 72, 0.18);
+  margin-bottom: 8px;
+}
+
+.monthRegularTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.monthRegularHint {
+  margin: 0;
+  font-size: 10.5px;
+  opacity: 0.7;
+  color: rgba(34, 49, 72, 0.68);
+  font-weight: 650;
+}
+
+.monthRegularGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.regItem {
+  border-radius: 10px;
+  border: 1px solid rgba(34, 49, 72, 0.1);
+  background: rgba(255, 255, 255, 0.14);
+  padding: 6px 8px;
+  display: grid;
+  grid-template-columns: 62px 52px 1fr;
+  align-items: center;
+  gap: 8px;
+}
+
+.regDay {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(34, 49, 72, 0.86);
+}
+
+.regTime {
+  font-size: 10.5px;
+  font-weight: 700;
+  font-family: var(--titleFont);
+  color: rgba(34, 49, 72, 0.9);
+}
+
+.regName {
+  font-size: 10.8px;
+  font-weight: 650;
+  color: rgba(34, 49, 72, 0.78);
+  line-height: 1.2;
+}
+
+/* responsivo web */
+@media (max-width: 920px) {
+  .monthRegularGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   Print: preservar cores no PDF
+========================= */
+@media print {
+  .monthRail,
+  .monthRail * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .monthRegular,
+  .regItem,
+  .monthEvent,
+  .monthCard {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+
+/* =========================
+   Data destacada para eventos NÍVEL 3
+========================= */
+
+.monthEvent--lvl3 .monthDate {
+  background: linear-gradient(
+    180deg,
+    rgba(34, 49, 72, 0.95),
+    rgba(34, 49, 72, 0.85)
+  );
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.monthEvent--lvl3 .monthDay,
+.monthEvent--lvl3 .monthMonth,
+.monthEvent--lvl3 .monthWeekday {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+/* =========================================================
+   PROGRAMAÇÃO MENSAL — Continuação
+========================================================= */
+
+.monthBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8mm;
+}
+
+/* Continuação: cabeçalho mais compacto (ganha espaço pra timeline) */
+.monthSheet--cont .monthTop {
+  margin-bottom: 6mm;
+  padding-bottom: 6mm;
+}
+
+.monthTop--cont .monthSub {
+  max-width: 60ch;
+}
+
+/* Continuação: por padrão, NÃO mostrar programação regular
+   (você só coloca se quiser repetir no HTML) */
+/*.monthSheet--cont .monthRegular {
+  display: none;
+}*/
+
+/* Pequena dica visual de “continuação” no topo (opcional e discreto) */
+.monthSheet--cont .monthTitle::after {
+  content: " — Continuação";
+  font-size: 14px;
+  font-weight: 850;
+  color: rgba(34, 49, 72, 0.55);
+}
+
+/* =========================================================
+   PILLS — Novas categorias (tema claro)
+   -> Cole no FINAL do months.css
+========================================================= */
+
+/* deixa todos os pills com mais "cara de selo" (melhor acabamento) */
+.pillPlace,
+.pillTag {
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* =========================================================
+   NOVAS CATEGORIAS — TEMA CLARO (cores vivas)
+========================================================= */
+
+/* CONGREGAÇÕES (roxo/violeta vivo) */
+.pillPlace.is-cong {
+  background: rgba(168, 85, 247, 0.22);
+  border-color: rgba(168, 85, 247, 0.55);
+  color: rgba(88, 28, 135, 0.98);
+}
+
+/* 4ª ÁREA CIADSETA (vermelho/rosa forte — chama MUITA atenção) */
+.pillPlace.is-area4 {
+  background: rgba(244, 63, 94, 0.22);
+  border-color: rgba(244, 63, 94, 0.55);
+  color: rgba(136, 19, 55, 0.98);
+}
+
+/* PROGRAMAÇÕES GERAIS / CAMPO GERAL (âmbar/dourado forte) */
+.pillPlace.is-geral {
+  background: rgba(245, 158, 11, 0.22);
+  border-color: rgba(245, 158, 11, 0.6);
+  color: rgba(120, 53, 15, 0.98);
+}
+
+/* DATA COMEMORATIVA (ciano/teal vivo) */
+.pillPlace.is-data {
+  background: rgba(6, 182, 212, 0.22);
+  border-color: rgba(6, 182, 212, 0.55);
+  color: rgba(15, 118, 110, 0.98);
+}
+
+/* =========================================================
+   VARIANTE AUTOMÁTICA — quando o card é escuro (NÍVEL 3)
+   Ajusta as cores pra ficarem legíveis e com destaque no fundo navy.
+========================================================= */
+
+.monthEvent--lvl3 .pillPlace,
+.monthEvent--lvl3 .pillTag {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+/* CONGREGAÇÕES no escuro -> lilás claro */
+.monthEvent--lvl3 .pillPlace.is-cong {
+  background: rgba(216, 180, 254, 0.92);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(28, 18, 46, 0.95);
+}
+
+/* 4ª ÁREA CIADSETA no escuro -> rosa claro */
+.monthEvent--lvl3 .pillPlace.is-area4 {
+  background: rgba(251, 113, 133, 0.92);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(40, 12, 20, 0.95);
+}
+
+/* PROGRAMAÇÕES GERAIS no escuro -> dourado claro */
+.monthEvent--lvl3 .pillPlace.is-geral {
+  background: rgba(253, 230, 138, 0.92);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: rgba(114, 59, 0, 0.92);
+}
+
+/* DATA COMEMORATIVA no escuro -> ciano claro */
+.monthEvent--lvl3 .pillPlace.is-data {
+  background: rgba(103, 232, 249, 0.92);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: rgba(9, 28, 34, 0.94);
+}
+
+/* Tag genérica (ex: “Destaque”) no escuro */
+.monthEvent--lvl3 .pillTag {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* =========================================================
+   NOVAS CATEGORIAS — TEMA CLARO
+========================================================= */
+
+/* JOVENS — roxo vivo */
+.pillPlace.is-jovens {
+  background: rgba(168, 85, 247, 0.22);
+  border-color: rgba(168, 85, 247, 0.55);
+  color: rgba(88, 28, 135, 0.98);
+}
+
+/* DATA COMEMORATIVA — rosa / magenta */
+.pillPlace.is-data {
+  background: rgba(236, 72, 153, 0.22);
+  border-color: rgba(236, 72, 153, 0.55);
+  color: rgba(131, 24, 67, 0.98);
+}
+
+/* CONGREGAÇÕES (Área 2 / Área 3) — teal */
+.pillPlace.is-cong {
+  background: rgba(20, 184, 166, 0.22);
+  border-color: rgba(20, 184, 166, 0.55);
+  color: rgba(15, 118, 110, 0.98);
+}
+
+/* 4ª ÁREA CIADSETA — vermelho institucional */
+.pillPlace.is-ciad {
+  background: rgba(220, 38, 38, 0.22);
+  border-color: rgba(220, 38, 38, 0.55);
+  color: rgba(127, 29, 29, 0.98);
+}
+
+/* PROGRAMAÇÕES GERAIS — azul petróleo */
+.pillPlace.is-geral {
+  background: rgba(30, 64, 175, 0.22);
+  border-color: rgba(30, 64, 175, 0.55);
+  color: rgba(30, 58, 138, 0.98);
+}
+
+/* =========================================================
+   NOVAS CATEGORIAS — CARD ESCURO (NÍVEL 3)
+========================================================= */
+
+/* JOVENS — lilás claro */
+.monthEvent--lvl3 .pillPlace.is-jovens {
+  background: rgba(221, 214, 254, 0.95);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(46, 16, 101, 0.95);
+}
+
+/* DATA COMEMORATIVA — rosa claro */
+.monthEvent--lvl3 .pillPlace.is-data {
+  background: rgba(251, 207, 232, 0.95);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: rgba(131, 24, 67, 0.95);
+}
+
+/* CONGREGAÇÕES — teal claro */
+.monthEvent--lvl3 .pillPlace.is-cong {
+  background: rgba(153, 246, 228, 0.95);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: rgba(19, 78, 74, 0.95);
+}
+
+/* 4ª ÁREA CIADSETA — vermelho claro */
+.monthEvent--lvl3 .pillPlace.is-ciad {
+  background: rgba(254, 202, 202, 0.95);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: rgba(127, 29, 29, 0.95);
+}
+
+/* PROGRAMAÇÕES GERAIS — azul claro */
+.monthEvent--lvl3 .pillPlace.is-geral {
+  background: rgba(191, 219, 254, 0.95);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: rgba(30, 58, 138, 0.95);
+}
+
+/* =========================================================
+   MULTI-DIA / RANGE — evita quebra feia na data
+========================================================= */
+
+/* pequena melhoria geral: um pouco mais de espaço pra data */
+.monthEvent {
+  grid-template-columns: 68px 1fr; /* era 60px */
+}
+
+/* garante que o conteúdo do bloco de data não quebre estranho */
+.monthDay,
+.monthMonth,
+.monthWeekday {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+/* Variante: evento com intervalo (19–20, 26–28 etc.) */
+.monthEvent--range {
+  grid-template-columns: 76px 1fr; /* mais largo só no multi-dia */
+}
+
+/* tipografia do range: levemente menor e mais “fit” */
+.monthEvent--range .monthDate {
+  padding: 10px 8px; /* reduz um pouco pra caber melhor */
+}
+
+.monthEvent--range .monthDay {
+  font-size: 16px; /* era 18px */
+  letter-spacing: -0.01em;
+}
+
+.monthEvent--range .monthWeekday {
+  font-size: 9px; /* era 10px */
+  letter-spacing: 0.1em;
+}
+
+/* Se for nível 3 (dark), mantém leitura perfeita */
+.monthEvent--lvl3.monthEvent--range .monthDay,
+.monthEvent--lvl3.monthEvent--range .monthMonth,
+.monthEvent--lvl3.monthEvent--range .monthWeekday {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+/* =========================================================
+   PILLS — Novas categorias
+========================================================= */
+
+/* PROGRAMAÇÕES GERAIS */
+.pillPlace.is-gerais {
+  background: rgba(96, 165, 250, 0.22);
+  border-color: rgba(96, 165, 250, 0.55);
+  color: rgba(12, 45, 110, 0.98);
+}
+
+/* DATA COMEMORATIVA */
+.pillPlace.is-data {
+  background: rgba(148, 163, 184, 0.22);
+  border-color: rgba(148, 163, 184, 0.55);
+  color: rgba(30, 41, 59, 0.95);
+}
+
+/* CONGREGAÇÕES — ÁREA 1 */
+.pillPlace.is-area1 {
+  background: rgba(56, 189, 248, 0.22);
+  border-color: rgba(56, 189, 248, 0.55);
+  color: rgba(7, 89, 133, 0.98);
+}
+
+/* CONGREGAÇÕES — ÁREA 2 */
+.pillPlace.is-area2 {
+  background: rgba(74, 222, 128, 0.22);
+  border-color: rgba(74, 222, 128, 0.55);
+  color: rgba(20, 83, 45, 0.98);
+}
+
+/* CONGREGAÇÕES — ÁREA 3 */
+.pillPlace.is-area3 {
+  background: rgba(251, 191, 36, 0.22);
+  border-color: rgba(251, 191, 36, 0.55);
+  color: rgba(120, 53, 15, 0.98);
+}
+
+/* 4ª ÁREA CIADSETA */
+.pillPlace.is-cial {
+  background: rgba(244, 114, 182, 0.22);
+  border-color: rgba(244, 114, 182, 0.55);
+  color: rgba(131, 24, 67, 0.98);
+}
+
+/* =========================================================
+   PILLS — Novas categorias no NÍVEL 3 (cards escuros)
+========================================================= */
+
+.monthEvent--lvl3 .pillPlace.is-gerais {
+  background: rgba(147, 197, 253, 0.95);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(12, 18, 33, 0.95);
+}
+
+.monthEvent--lvl3 .pillPlace.is-data {
+  background: rgba(226, 232, 240, 0.92);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(30, 41, 59, 0.95);
+}
+
+.monthEvent--lvl3 .pillPlace.is-area1 {
+  background: rgba(186, 230, 253, 0.95);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(7, 89, 133, 0.95);
+}
+
+.monthEvent--lvl3 .pillPlace.is-area2 {
+  background: rgba(187, 247, 208, 0.95);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(20, 83, 45, 0.95);
+}
+
+.monthEvent--lvl3 .pillPlace.is-area3 {
+  background: rgba(254, 240, 138, 0.95);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(120, 53, 15, 0.95);
+}
+
+.monthEvent--lvl3 .pillPlace.is-cial {
+  background: rgba(251, 207, 232, 0.95);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(131, 24, 67, 0.95);
+}
+
+/* =========================================================
+   PILLS — RETIROS E CONFRATERNIZAÇÕES
+========================================================= */
+
+/* Tema claro */
+.pillPlace.is-retiro {
+  background: rgba(168, 85, 247, 0.22); /* roxo vivo */
+  border-color: rgba(168, 85, 247, 0.55);
+  color: rgba(88, 28, 135, 0.98);
+}
+
+/* =========================================================
+   RETIROS — adaptação automática no NÍVEL 3 (card escuro)
+========================================================= */
+
+.monthEvent--lvl3 .pillPlace.is-retiro {
+  background: rgba(221, 214, 254, 0.95); /* lilás claro */
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(88, 28, 135, 0.95);
+}

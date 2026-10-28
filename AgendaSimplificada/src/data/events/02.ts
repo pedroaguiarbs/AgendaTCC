@@ -1,0 +1,156 @@
+import type { AgendaEvent } from "../../types/agenda";
+export const events2: AgendaEvent[] = [
+  {
+    id: "event-02-001",
+    startDate: "2026-02-04",
+    endDate: null,
+    dayLabel: "04",
+    monthLabel: "Fev",
+    weekdayLabel: "Qua",
+    title: "Culto de Casais — Família",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Sede",
+        variant: "pillPlace is-sede",
+      },
+    ],
+  },
+  {
+    id: "event-02-002",
+    startDate: "2026-02-04",
+    endDate: null,
+    dayLabel: "04",
+    monthLabel: "Fev",
+    weekdayLabel: "Qua",
+    title: "Encontro dos Adolas",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Visita aos Lares",
+        variant: "pillPlace is-visita",
+      },
+    ],
+  },
+  {
+    id: "event-02-003",
+    startDate: "2026-02-09",
+    endDate: null,
+    dayLabel: "09",
+    monthLabel: "Fev",
+    weekdayLabel: "Seg",
+    title: "Reunião Ministerial",
+    level: 3,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Trabalhadores do Campo",
+        variant: "pillPlace is-campo",
+      },
+    ],
+  },
+  {
+    id: "event-02-004",
+    startDate: "2026-02-11",
+    endDate: null,
+    dayLabel: "11",
+    monthLabel: "Fev",
+    weekdayLabel: "Qua",
+    title: "TCH — Família",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Visita aos Lares",
+        variant: "pillPlace is-visita",
+      },
+    ],
+  },
+  {
+    id: "event-02-005",
+    startDate: "2026-02-18",
+    endDate: null,
+    dayLabel: "18",
+    monthLabel: "Fev",
+    weekdayLabel: "Qua",
+    title: "Visita — Família",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Visita aos Lares",
+        variant: "pillPlace is-visita",
+      },
+    ],
+  },
+  {
+    id: "event-02-006",
+    startDate: "2026-02-21",
+    endDate: null,
+    dayLabel: "21",
+    monthLabel: "Fev",
+    weekdayLabel: "Sáb",
+    title: "Comunhão na Mesa — Cong. Vida Nova",
+    level: 3,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Diretoria, Supervisores e Dirigentes",
+        variant: "pillPlace is-campo",
+      },
+    ],
+  },
+  {
+    id: "event-02-007",
+    startDate: "2026-02-22",
+    endDate: null,
+    dayLabel: "22",
+    monthLabel: "Fev",
+    weekdayLabel: "Dom",
+    title: "Culto da Família",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Sede",
+        variant: "pillPlace is-sede",
+      },
+    ],
+  },
+  {
+    id: "event-02-008",
+    startDate: "2026-02-26",
+    endDate: null,
+    dayLabel: "26",
+    monthLabel: "Fev",
+    weekdayLabel: "Qui",
+    title: "TPM — Dept. Mulheres",
+    level: 2,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Visita aos Lares",
+        variant: "pillPlace is-visita",
+      },
+    ],
+  },
+  {
+    id: "event-02-009",
+    startDate: "2026-02-28",
+    endDate: null,
+    dayLabel: "28",
+    monthLabel: "Fev",
+    weekdayLabel: "Sáb",
+    title: "Consagração e Culto Geral — UMADA/UAADA",
+    level: 3,
+    rangeStyle: false,
+    badges: [
+      {
+        label: "Programações Gerais",
+        variant: "pillPlace is-campo",
+      },
+    ],
+  },
+];

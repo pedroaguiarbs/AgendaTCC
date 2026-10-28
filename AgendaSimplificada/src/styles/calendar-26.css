@@ -1,0 +1,543 @@
+/* =========================================================
+   CALENDÁRIO 2026 — (1 ou 2 páginas)
+========================================================= */
+
+.calYearSheet,
+.calLegendSheet {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fundo “azul canva” (parecido com seu modelo) */
+.calYearSheet {
+  background:
+    radial-gradient(
+      900px 520px at 20% 10%,
+      rgba(255, 255, 255, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 520px at 90% 30%,
+      rgba(255, 255, 255, 0.08),
+      transparent 62%
+    ),
+    linear-gradient(180deg, rgba(62, 104, 160, 0.92), rgba(90, 140, 200, 0.92));
+}
+
+/* título */
+.calYearTop {
+  padding: 22mm var(--padX) 10mm;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.calYearTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  letter-spacing: -0.03em;
+  font-size: 56px;
+  line-height: 1;
+}
+
+.calYearTitleYear {
+  margin-top: -6px;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  font-size: 62px;
+  letter-spacing: -0.03em;
+  opacity: 0.75;
+}
+
+.calYearSub {
+  margin: 8px auto 0;
+  max-width: 70ch;
+  font-weight: 650;
+  opacity: 0.9;
+}
+
+/* grid 3 col x 4 linhas */
+.calGrid {
+  padding: 6mm var(--padX) 18mm;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10mm 12mm;
+}
+
+/* caixa do mês */
+.monthBox {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.monthBar {
+  text-align: center;
+  padding: 6px 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  border-radius: 10px;
+  background: rgba(20, 35, 60, 0.26);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  margin-bottom: 6px;
+}
+
+/* mini calendário */
+.miniCal {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-variant-numeric: tabular-nums;
+}
+
+.miniCal th {
+  font-size: 11px;
+  font-weight: 900;
+  opacity: 0.95;
+  padding: 3px 0 6px;
+}
+
+.miniCal td {
+  text-align: center;
+  padding: 4px 0;
+  font-size: 12.5px;
+  font-weight: 650;
+  opacity: 0.95;
+}
+
+.miniCal td.empty {
+  opacity: 0.18;
+}
+
+/* rodapé (reaproveita sua .footer) */
+.calFooter {
+  color: rgba(255, 255, 255, 0.86);
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
+
+/* =========================================================
+   PRINT
+========================================================= */
+@media print {
+  .calYearSheet {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .calYearSheet * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .monthBox,
+  .legendCard {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+
+/* =========================================================
+   CALENDÁRIO 2026 — AJUSTES (sobrescreve o anterior)
+========================================================= */
+
+/* 1) Fundo: azul um pouco mais escuro (mais perto do navy da agenda) */
+.calYearSheet {
+  background:
+    radial-gradient(
+      900px 520px at 20% 10%,
+      rgba(255, 255, 255, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 520px at 90% 30%,
+      rgba(255, 255, 255, 0.06),
+      transparent 62%
+    ),
+    linear-gradient(180deg, rgba(34, 49, 72, 0.92), rgba(47, 72, 109, 0.9)) !important;
+}
+
+/* 2) Título mais pra cima e menor (evita quebra no PDF) */
+.calYearTop {
+  padding: 14mm var(--padX) 6mm !important; /* antes 22mm ... 10mm */
+}
+
+/* “Calendário” menor */
+.calYearTitle {
+  font-size: 44px !important; /* antes 56 */
+  line-height: 1 !important;
+  color: whitesmoke;
+}
+
+/* “2026” em bege claro e mais “elegante” */
+.calYearTitleYear {
+  font-size: 56px !important; /* antes 62 */
+  margin-top: -8px !important;
+  opacity: 1 !important;
+
+  /* bege claro (próximo do seu tom de destaque) */
+  color: rgba(243, 234, 224, 0.92) !important;
+}
+
+/* Sub menor pra economizar espaço */
+.calYearSub {
+  margin-top: 6px !important;
+  font-size: 11.5px !important;
+  opacity: 0.88 !important;
+}
+
+/* 3) Grid um pouco mais compacto (ajuda no print) */
+.calGrid {
+  padding: 4mm var(--padX) 16mm !important;
+  gap: 8mm 10mm !important;
+}
+
+/* 4) Barras do mês mais alinhadas com a paleta (menos “cinza”) */
+.monthBar {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+/* 5) Texto levemente mais legível no fundo mais escuro */
+.miniCal td,
+.miniCal th,
+.monthBox {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+/* 6) Rodapé nessa página (pra ficar “clean” no fundo escuro) */
+.calFooter {
+  color: rgba(255, 255, 255, 0.82) !important;
+  border-top-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+.calYearTitle {
+  font-size: 42px !important;
+}
+.calYearTitleYear {
+  font-size: 52px !important;
+}
+.calGrid {
+  gap: 7mm 9mm !important;
+}
+
+/* =========================================================
+   CALENDÁRIO 2026 — FIX rodapé e “luz” do canto
+   (cole no FINAL do CSS)
+========================================================= */
+
+/* 1) Reserva de rodapé: impede o grid de ficar por baixo do footer */
+.calYearSheet .calGrid {
+  /* aumenta a “reserva” inferior do conteúdo */
+  padding-bottom: 26mm !important; /* ajuste fino: 22–30mm */
+}
+
+/* Garante que o footer fique “por cima” sempre */
+.calYearSheet .footer,
+.calYearSheet .calFooter {
+  z-index: 5 !important;
+}
+
+/* 2) Deixa o brilho do canto bem mais discreto */
+.calYearSheet {
+  background:
+    radial-gradient(
+      900px 520px at 20% 10%,
+      rgba(255, 255, 255, 0.07),
+      transparent 60%
+    ),
+    /* 👇 este é o que costuma “estourar” no canto inferior esquerdo */
+    radial-gradient(
+        820px 480px at 18% 92%,
+        rgba(255, 255, 255, 0.04),
+        transparent 62%
+      ),
+    radial-gradient(
+      900px 520px at 90% 30%,
+      rgba(255, 255, 255, 0.05),
+      transparent 62%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(34, 49, 72, 0.92),
+      rgba(47, 72, 109, 0.9)
+    ) !important;
+}
+
+/* Se a “luz” vier das texturas globais da .sheet */
+.calYearSheet::before,
+.calYearSheet::after {
+  opacity: 0.12 !important; /* bem discreto no web */
+}
+
+.calYearSheet .calGrid {
+  padding-bottom: 28mm !important;
+}
+
+/* =========================================================
+   CALENDÁRIO 2026 — Header compacto e alinhado
+========================================================= */
+
+.calYearTop {
+  text-align: center;
+  margin-bottom: 10mm; /* bem menor que antes */
+}
+
+.calYearTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  font-size: 32px; /* ↓ reduz altura total */
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.96);
+
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+/* 2026 em bege elegante */
+.calYearTitle span {
+  color: rgba(210, 199, 184, 0.98); /* bege da paleta */
+  font-weight: 900;
+}
+
+/* subtítulo mais contido */
+.calYearSub {
+  margin: 6px 0 0;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 600;
+}
+
+@media print {
+  .calYearTop {
+    margin-bottom: 8mm !important;
+  }
+
+  .calYearTitle {
+    font-size: 30px !important;
+  }
+}
+
+/* =========================
+   CALENDÁRIO 2026 — AJUSTES FINOS
+========================= */
+
+/* Título em 1 linha */
+.calTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-size: 26px; /* menor que antes */
+  color: rgba(255, 255, 255, 0.96);
+  text-align: center;
+}
+.calTitle .calYear {
+  color: rgba(210, 199, 184, 0.96); /* bege claro elegante */
+  font-weight: 950;
+}
+
+/* Sub mais compacto */
+.calSub {
+  margin: 6px 0 0;
+  font-size: 11px;
+  opacity: 0.85;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ✅ IMPORTANTE: reserva real do rodapé pra não ficar “por baixo” */
+.calendarSheet .calendarMain {
+  position: relative;
+  height: 100%;
+  padding: 12mm var(--padX);
+  padding-bottom: calc(var(--padY) + 20mm); /* reserva pro footer */
+}
+
+/* Se o seu conteúdo estiver em um wrapper, reserve também */
+.calendarSheet .calendarGrid {
+  margin-top: 10mm;
+  padding-bottom: 8mm; /* respiro extra */
+}
+
+/* Fundo azul mais alinhado com a paleta + glow discreto */
+.calendarSheet {
+  background:
+    radial-gradient(
+      900px 520px at 20% 10%,
+      rgba(210, 199, 184, 0.1),
+      transparent 62%
+    ),
+    radial-gradient(
+      700px 520px at 15% 92%,
+      rgba(255, 255, 255, 0.06),
+      transparent 58%
+    ),
+    linear-gradient(180deg, rgba(34, 49, 72, 0.92), rgba(47, 72, 109, 0.86));
+}
+
+/* Se você tem um ::before / ::after criando “luz”, reduz forte */
+.calendarSheet::before,
+.calendarSheet::after {
+  opacity: 0.18; /* bem mais discreto */
+  filter: blur(1.2px);
+}
+
+/* Se o glow do canto inferior esquerdo for um elemento específico, zera ele */
+.calendarGlow {
+  opacity: 0.12 !important;
+  filter: blur(2px) !important;
+}
+
+/* =========================
+   PRINT — Calendário (corrigir corte e “conteúdo sob o rodapé”)
+========================= */
+@media print {
+  /* Aproveita mais espaço no topo só do calendário */
+  .calendarSheet .calendarMain {
+    padding-top: 10mm !important;
+    padding-bottom: calc(var(--padY) + 20mm); /* reserva pro footer */
+  }
+
+  /* Footer sempre por cima */
+  .calendarSheet .footer {
+    z-index: 3 !important;
+  }
+
+  /* Garante que a grade não “desça” pro rodapé */
+  .calendarSheet .calendarGrid {
+    padding-bottom: 10mm !important;
+  }
+
+  /* ✅ Glow inferior esquerdo muito forte no print: reduz ainda mais */
+  .calendarSheet::before,
+  .calendarSheet::after {
+    opacity: 0.1 !important;
+    filter: blur(1.6px) !important;
+  }
+
+  /* Se existir elemento específico do glow */
+  .calendarGlow {
+    display: none !important;
+  }
+}
+
+/* =========================================
+   CALENDÁRIO — header no padrão weekTop
+========================================= */
+
+.calTop {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.calKicker {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.calDot {
+  background: rgba(210, 199, 184, 0.95); /* bege */
+  box-shadow: 0 0 0 7px rgba(210, 199, 184, 0.12);
+}
+
+.calTitle {
+  color: rgba(255, 255, 255, 0.96); /* título branco */
+}
+
+.calTitle .calYear {
+  color: rgba(210, 199, 184, 0.96); /* 2026 bege */
+}
+
+/* sub no mesmo tamanho do padrão weekSub, só mudando cor */
+.calSub {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* pills do lado direito */
+.calPill {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+/* Reserve espaço pro rodapé (não deixa o conteúdo passar por baixo) */
+.calendarMain {
+  position: relative;
+  height: 100%;
+  padding: var(--padY) var(--padX);
+  padding-bottom: calc(var(--padY) + 20mm); /* reserva do footer */
+}
+
+/* Grid mais eficiente (ganha altura sem mexer no header) */
+.calendarGrid {
+  margin-top: 0; /* o weekTop já dá espaçamento */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 10mm;
+  row-gap: 8mm; /* era maior; aqui você ganha muito espaço */
+}
+
+/* Cada “mini calendário” mais compacto */
+.calMini {
+  padding: 6px 8px;
+}
+
+.calMini .calDays {
+  gap: 4px; /* reduz micro espaçamento */
+}
+
+.calMini .calNum {
+  font-size: 10.6px; /* 0.5px a menos já ajuda muito no A4 */
+}
+
+@media print {
+  /* aplica só no calendário */
+  .calendarSheet .calendarMain {
+    padding-bottom: calc(var(--padY) + 18mm) !important;
+  }
+
+  /* se ainda cortar 1–2mm, compacte só no print */
+  .calendarSheet .calendarGrid {
+    row-gap: 7mm !important;
+  }
+
+  /* glow/luz do canto: muito forte no print */
+  .calendarSheet::before,
+  .calendarSheet::after {
+    opacity: 0.1 !important;
+    filter: blur(1.4px) !important;
+  }
+}
+
+/* =========================================
+   CALENDÁRIO — header simples com espaçamento padrão (weekTop)
+========================================= */
+
+.calTop {
+  /* replica somente o espaçamento do weekTop */
+  display: block;
+  padding-bottom: 2mm;
+  margin-bottom: 2mm;
+}
+
+.calTitle {
+  margin: 0;
+  font-family: var(--titleFont);
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  font-size: 30px; /* mesmo “peso” dos títulos padrões */
+  line-height: 1.08;
+  color: rgba(255, 255, 255, 0.96);
+  text-align: center; /* mantém seu layout do calendário */
+}
+
+.calYear {
+  color: rgba(210, 199, 184, 0.96); /* bege elegante */
+}
+
+.calSub {
+  margin: 6px 0 0;
+  font-size: 12.5px; /* padrão weekSub */
+  font-weight: 550;
+  color: rgba(255, 255, 255, 0.78);
+  text-align: center;
+}
