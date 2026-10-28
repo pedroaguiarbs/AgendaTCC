@@ -1,0 +1,173 @@
+/* =========================================================
+   LAYOUT — estrutura A4 + topo + grids base + rodapé
+========================================================= */
+
+/* Container geral (visualização web) */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+/* Folha A4 */
+.sheet {
+  width: var(--a4w);
+  min-height: var(--a4h);
+  background: rgba(243, 234, 224, 0.86);
+  border: 1px solid rgba(34, 49, 72, 0.12);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+
+  padding: var(--padY) var(--padX);
+
+  /* Reserva espaço pro rodapé não sobrepor conteúdo */
+  padding-bottom: calc(var(--padY) + 22mm);
+}
+
+/* Texturas leves da folha */
+.sheet::before {
+  content: "";
+  position: absolute;
+  inset: -120px -160px auto auto;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(47, 72, 109, 0.2),
+    transparent 58%
+  );
+  pointer-events: none;
+  filter: blur(1px);
+}
+.sheet::after {
+  content: "";
+  position: absolute;
+  inset: auto auto -170px -190px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 60% 45%,
+    rgba(210, 199, 184, 0.3),
+    transparent 62%
+  );
+  pointer-events: none;
+}
+
+/* Cabeçalho do bloco */
+.top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 10mm;
+  border-bottom: 1px solid rgba(34, 49, 72, 0.14);
+  margin-bottom: 10mm;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(34, 49, 72, 0.7);
+  font-weight: 700;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--blue);
+  box-shadow: 0 0 0 6px rgba(47, 72, 109, 0.12);
+}
+
+.sub {
+  margin: 6px 0 0;
+  max-width: 70ch;
+  color: rgba(34, 49, 72, 0.78);
+  font-weight: 500;
+  font-size: 12.5px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.tag {
+  border: 1px solid rgba(34, 49, 72, 0.18);
+  background: rgba(210, 199, 184, 0.22);
+  color: rgba(34, 49, 72, 0.86);
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* Grid interno por folha (Folhas 1 e 2) */
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 12mm;
+}
+
+/* Grid interno (Folha 2: Conselho de Pastores) */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 10mm;
+  align-items: start;
+}
+
+/* Wrapper auxiliar (Folha 2) */
+.stack {
+  position: relative;
+  z-index: 1;
+  margin-top: 10mm;
+}
+
+/* Rodapé de página */
+.footer {
+  position: absolute;
+  left: var(--padX);
+  right: var(--padX);
+  bottom: 10mm;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(34, 49, 72, 0.12);
+  color: rgba(34, 49, 72, 0.7);
+  font-size: 11px;
+  font-weight: 700;
+  z-index: 1;
+}
+
+/* Quebra de página ao imprimir */
+.page-break {
+  break-after: page;
+  page-break-after: always;
+}
+
+/* Responsivo (web) */
+@media (max-width: 920px) {
+  .grid,
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
