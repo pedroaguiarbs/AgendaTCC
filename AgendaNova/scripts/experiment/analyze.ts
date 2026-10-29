@@ -22,6 +22,7 @@ import {
   sha256,
 } from "./protocol";
 import { loadAttempts } from "./report";
+import { pdfResourceOptions } from "./pdf-resources";
 export function normalizeText(text: string) {
   return text
     .normalize("NFKC")
@@ -200,13 +201,8 @@ async function analyze() {
         const loadingTask = getDocument({
           data: new Uint8Array(bytes),
           useSystemFonts: false,
-          standardFontDataUrl: path.join(
-            appRoot,
-            "node_modules/pdfjs-dist/standard_fonts/",
-          ),
-          cMapUrl: path.join(appRoot, "node_modules/pdfjs-dist/cmaps/"),
+          ...pdfResourceOptions(appRoot),
           cMapPacked: true,
-          wasmUrl: path.join(appRoot, "node_modules/pdfjs-dist/wasm/"),
         });
         const document = await loadingTask.promise;
         const extracted: string[] = [];

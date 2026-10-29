@@ -183,3 +183,20 @@ Os testes automatizados cobrem programação de 24 exportações oficiais, ordem
 O ambiente Windows e o Chromium instalado pelo Playwright no computador pessoal ainda precisam do piloto local. As fichas de legibilidade/nitidez, ampliações e leitores de celular permanecem para avaliação humana. O diretório local do piloto não é versionado; os scripts permitem reproduzir a verificação.
 
 Se o PowerShell bloquear o lançador `npm.ps1`, utilize `npm.cmd` e `npx.cmd` nos mesmos comandos, sem alterar a política de execução. Não rode coleta e análise simultaneamente, mesmo de sessões diferentes. O executor controla apenas seus próprios processos; outros programas e processos externos continuam sendo responsabilidade do ambiente de coleta.
+
+## Reanalisar um piloto existente após corrigir caminhos Windows
+
+Os diretórios de recursos do PDF.js são convertidos com `pathToFileURL` para URLs `file://` codificadas, terminadas em `/`. Espaços, acentos e caracteres como `#` e `%` são preservados. Como o carregador Node do PDF.js 6.4.299 não decodifica strings `file://`, o analisador fornece uma pequena fábrica de leitura local que passa objetos `URL` a `fs.readFile`. Isso corrige apenas a localização de CMaps, fontes-padrão e WebAssembly, sem alterar exportadores, protocolo, parâmetros ou critérios de validade.
+
+Atualize o código para a correção e, no PowerShell, dentro de `AgendaNova`, confira a regressão e repita **apenas a análise**:
+
+```powershell
+npm ci
+npx tsx --test tests/experiment/pdf-resources.test.ts
+$sessao = 'C:\Users\pedro\OneDrive\Área de Trabalho\AgendaTCC\AgendaTCC\AgendaNova\artifacts\experiments\pilot-...'
+npm run experiment:analyze -- "$sessao"
+```
+
+Substitua `pilot-...` pelo nome completo da sessão já coletada. Não execute novamente `experiment:pilot` nem os exportadores. A sessão precisa continuar com `status=completed`, o build preservado e o mesmo navegador registrados na coleta. As análises anteriores com falha ficam intactas; o comando cria uma nova pasta `analysis-<timestamp>` dentro da mesma sessão.
+
+O teste verifica explicitamente caminhos Windows com unidade `C:`, barras finais e caminhos UNC usando o modo Windows do Node, mesmo em um host Linux. Também lê bytes reais de CMap, fonte e WASM em um diretório temporário com espaços e acentos e executa extração/renderização PDF.js usando esse diretório. O mesmo teste pode e deve ser executado nativamente no Windows pelo comando acima; não pressupõe que o sucesso em caminhos POSIX seja suficiente para cobrir o problema.
