@@ -88,3 +88,7 @@ A comparação automatizada cobre o comportamento do Chromium validado, não cer
 ## Experimento reproduzível (somente AgendaNova)
 
 Consulte [o protocolo e as instruções para Windows](docs/experimento.md). `npm run experiment:pilot` faz um piloto identificado separadamente; `npm run experiment` faz dois aquecimentos e dez blocos pareados medidos. Texto e comparação visual são executados depois, por `npm run experiment:analyze -- "caminho-da-sessao"`. Os exportadores e o layout permanecem inalterados.
+
+## Materiais acadêmicos sem novos experimentos
+
+O comando `npm run materials -- --session "PASTA-DA-SESSAO" --analysis "analysis-..." --output "PASTA-EXTERNA"` organiza as evidências já coletadas, sem chamar coleta, exportadores ou análise. Veja [instruções PowerShell, interpretação e verificação](docs/materiais-monografia.md). Cada chamada gera um pacote externo exclusivo, com tabelas, gráficos, inventário e avaliação qualitativa editável. Use `npm run materials:verify -- "PACOTE" --check-sources` para conferir integridade.

@@ -18,7 +18,10 @@
     "experiment:analyze": "tsx scripts/experiment/analyze.ts",
     "experiment:clean-png": "tsx scripts/experiment/clean-png.ts",
     "test:experiment": "tsx --test tests/experiment/*.test.ts",
-    "experiment:report": "tsx scripts/experiment/report.ts"
+    "experiment:report": "tsx scripts/experiment/report.ts",
+    "materials": "tsx scripts/materials/cli.ts",
+    "materials:verify": "tsx scripts/materials/verify-cli.ts",
+    "test:materials": "tsx --test tests/materials/*.test.ts"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -32,6 +35,7 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "chart.js": "4.6.1",
     "pdf-lib": "1.17.1",
     "pdfjs-dist": "6.4.299",
     "playwright": "1.57.0",
